@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      springframework: DEBUG
+
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: client1
+          uri: http://localhost:5173
+          predicates:
+            - Path=/client1/**
+          filters:
+            - StripPrefix=0
+        - id: client2
+          uri: http://localhost:5174
+          predicates:
+            - Path=/client2/**
+          filters:
+            - StripPrefix=0
+
